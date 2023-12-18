@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from '@emotion/styled';
 
 export const HomeContainer = styled.div`
     position:fixed;
@@ -14,7 +14,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const BookcaseLocate = styled.div`
-    width: 100rem;
+    width: 108rem;
     padding: 1rem;
     font-size: 2.7rem;
     justify-contents: flex-start;
@@ -29,7 +29,7 @@ export const BookcaseStyle = styled.div`
 export const BookLocate = styled.div`
     position: absolute;
     display: flex;
-    top:9rem;
+    top:8.7rem;
     flex-wrap: wrap;
     padding-left: 18rem;
     z-index: 1;
@@ -38,8 +38,8 @@ export const BookLocate = styled.div`
 export const ImageContainer = styled.div`
     position: relative;
     img{
-        width:94rem;
-        height:53rem;
+        width:93.8rem;
+        height:auto;
     }
 `;
 
@@ -63,5 +63,28 @@ export const BookColoumn = styled.button`
 export const BookRow = styled.div`
     display: flex;
     flex-direction: row;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3.3rem;
 `;
+
+export const BookWriteButton = styled.button`
+    position:absolute;
+    font-family: 'HANAMDAUM';
+    font-size:2rem;
+    border:none;
+    background-color:#FFFAD9;
+    bottom:8rem;
+    right:3rem;
+    width:10rem;
+    height:4rem;
+    a{
+        color:black;
+        text-decoration:none;
+    }
+`
+export const ModalStyle = styled.div`
+    position:absolute;
+    background-color:#FEFFEE;
+    border:none;
+    width:20rem;
+    height:70rem;
+`
