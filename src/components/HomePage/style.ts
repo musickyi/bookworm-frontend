@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
+    position:fixed;
+    top:5rem;
     background-color: rgb(242, 239, 228);
+    z-index:-2;
     width: 100%;
     height: 100%;
     display: flex;
@@ -12,7 +15,7 @@ export const HomeContainer = styled.div`
 
 export const BookcaseLocate = styled.div`
     width: 100rem;
-    padding: 2rem;
+    padding: 1rem;
     font-size: 2.7rem;
     justify-contents: flex-start;
 `;
@@ -26,7 +29,7 @@ export const BookcaseStyle = styled.div`
 export const BookLocate = styled.div`
     position: absolute;
     display: flex;
-    top:10.7rem;
+    top:9rem;
     flex-wrap: wrap;
     padding-left: 18rem;
     z-index: 1;
@@ -34,7 +37,10 @@ export const BookLocate = styled.div`
 
 export const ImageContainer = styled.div`
     position: relative;
-    
+    img{
+        width:94rem;
+        height:53rem;
+    }
 `;
 
 export const BookColoumn = styled.button`
@@ -57,5 +63,5 @@ export const BookColoumn = styled.button`
 export const BookRow = styled.div`
     display: flex;
     flex-direction: row;
-    margin-bottom: 3.8rem;
+    margin-bottom: 3.5rem;
 `;

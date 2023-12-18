@@ -1,11 +1,13 @@
 import React from 'react'
-import { GlobalStyles } from '../styles/GlobalStyles'
 import HomePage from '../components/HomePage'
+import Menu from '../components/Menu'
 
 export default function Home() {
   return (
+    <>
+      <Menu/>
       <HomePage/>
-
+    </>
 
   )
 }
