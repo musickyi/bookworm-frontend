@@ -9,7 +9,7 @@ export function Bookworm() {
             y="0px"
             width="1.4rem"
             viewBox="0 0 1401 1024"
-            enable-background="new 0 0 1401 1024" >
+            enableBackground="new 0 0 1401 1024" >
        <path fill="#B4D241" opacity="1.000000" stroke="none"
                 d="
 M1.000000,794.468628 
