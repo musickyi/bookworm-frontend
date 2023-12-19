@@ -1,11 +1,12 @@
 import React from 'react'
-import LoginPage from '../LoginPage'
-
+import Menu from '../components/Menu'
+import HomePage from '../components/HomePage'
 
 export default function Home() {
   return (
     <>
-      <LoginPage/>
+      <Menu/>
+      <HomePage/>
     </>
 
   )

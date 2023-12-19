@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import * as SVG from '../../public/svg';
+import * as SVG from '../../../public/svg/';
 import Link from 'next/link';
 
 export default function Menu() {

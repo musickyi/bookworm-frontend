@@ -1,5 +1,5 @@
 import React from 'react';
-import Bookcase from '../../public/png/bookcase.png';
+import Bookcase from '../../../public/png/bookcase.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as S from './style';

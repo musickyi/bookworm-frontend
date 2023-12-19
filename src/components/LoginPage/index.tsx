@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import styles from './style';
-import Logo from '../../public/png/Group 42.png';
-import { cursorTo } from 'readline';
+import Image from 'next/image';
+import Logo from '../../../public/png/Group 42.png'
 import Link from 'next/link';
+import API from '../../api';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = () => {
-    // 예제: 실제로는 서버로 요청을 보내서 로그인 처리를 해야 합니다.
-    if (username === 'exampleUser' && password === 'examplePassword') {
+  const handleLogin = async () => {
+    try {
+      const response = await API.post('/auth/login', {
+        username,
+        password,
+      });
+
+      const { accessToken, refreshToken, expiredAT } = response.data;
+
+      // 토큰 저장
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('expiredAT', expiredAT);
+
       console.log('로그인 성공!');
-      // 로그인 성공 시 페이지 이동 또는 다른 작업을 수행할 수 있습니다.
-      router.push('/dashboard'); // 예제: 대시보드 페이지로 이동
-    } else {
-      console.log('로그인 실패. 아이디와 비밀번호를 확인하세요.');
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('로그인 실패. 아이디와 비밀번호를 확인하세요.');
     }
   };
+
 
   return (
     <>
@@ -69,7 +79,9 @@ const LoginPage = () => {
               로그인
             </Link>
           </button>
-          <div style={{ position: "absolute", left: "300px", top: "650px" }}>회원가입 하러가기 {'>'}</div>
+          <div style={{ position: "absolute", left: "300px", top: "650px" }}>
+            <Link href='/user/join'> 회원가입 하러가기 {'>'}</Link>
+          </div>
         </div>
       </div>
     </>
