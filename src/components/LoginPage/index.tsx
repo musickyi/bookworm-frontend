@@ -1,9 +1,11 @@
+import * as S from './style'
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Logo from '../../../public/png/Group 42.png'
+import Logo from '../../../public/png/Logo.png'
 import Link from 'next/link';
 import API from '../../api';
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -19,7 +21,6 @@ const LoginPage = () => {
 
       const { accessToken, refreshToken, expiredAT } = response.data;
 
-      // 토큰 저장
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('expiredAT', expiredAT);
@@ -31,60 +32,45 @@ const LoginPage = () => {
     }
   };
 
-
   return (
-    <>
-      <div style={{
-        position: "absolute",
-        width: "50%",
-        height: "100%",
-        backgroundColor: "#4C3327"
-      }}>
-        <Image src={Logo} alt='Logo' priority={true} style={{ position: "absolute", width: "500px", height: "300px", left: "140px", top: "180px" }} />
-      </div>
-      <div style={{ position: "absolute", width: "50%", height: "100%", backgroundColor: "#F2EFE4", left: "756px" }}>
-        <div style={{ position: "absolute", fontSize: "33px", left: "350px", top: "30px" }}>로그인</div>
-        <div>
-          <div style={{ position: "absolute", fontSize: "33px", left: "80px", top: "120px" }}>아이디</div>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{
-              position: "absolute", borderRadius: "15px", width: "600px", height: "50px", left: "80px", top: "200px"
-            }}
-          />
-        </div>
-        <div>
-          <div style={{ position: "absolute", fontSize: "33px", left: "80px", top: "300px" }}>비밀번호</div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              position: "absolute", borderRadius: "15px", width: "600px", height: "50px", left: "80px", top: "380px"
-            }}
-          />
-        </div>
-        <div>
-          <button
-            onClick={handleLogin}
-            style={{
-              position: "absolute", width: "600px", height: "78px", backgroundColor: "#4C3327", borderRadius: "15px", top: "550px", left: "80px"
-            }}>
-            <Link
-              style={{ textDecoration: "none", color: "white", fontSize: "35px", fontFamily: "HANAMDAUM" }}
-              href={''}
-            >
-              로그인
-            </Link>
-          </button>
-          <div style={{ position: "absolute", left: "300px", top: "650px" }}>
-            <Link href='/user/join'> 회원가입 하러가기 {'>'}</Link>
+    <S.Container>
+      <S.LogoContainer>
+        <S.LogoImage>
+          <Image src={Logo} alt='Logo' priority={true} />
+        </S.LogoImage>
+      </S.LogoContainer>
+      <S.LoginContainer>
+        <S.Title>로그인</S.Title>
+        <S.InputForm>
+          <div>
+            <S.Label>아이디</S.Label>
+            <S.Input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
-        </div>
-      </div>
-    </>
+          <div>
+            <S.Label>비밀번호</S.Label>
+            <S.Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </S.InputForm>
+        <S.LoginBottom>
+          <S.Button onClick={handleLogin}>
+            <Link href={''}>
+              <span>로그인</span>
+            </Link>
+          </S.Button>
+          <S.JoinLink>
+            <Link href='/user/join'>  회원가입 하러가기 {'>'}</Link>
+          </S.JoinLink>
+        </S.LoginBottom>
+      </S.LoginContainer>
+    </S.Container>
   );
 };
 
