@@ -138,7 +138,24 @@ export const BookCaseButton = styled.button<SidebarProps>`
   }
 `
 
-
+export const MyListStyle = styled.ul`
+font-size:3rem;
+animation: ${fadeIn} 0.3s ease-in-out;
+padding:1rem 0rem 3rem 5rem;
+li{
+  list-style:none;
+  padding:1rem;
+}
+li::marker {
+  content: '●'; 
+  font-size: 2rem; 
+  color:#906B6B;
+  margin: 0rem 0.5rem; 
+}
+span{
+  font-size:2rem;
+}
+`
 export const BookCaseLocateList = styled.ul`
   display:flex;
   flex-direction: column;
