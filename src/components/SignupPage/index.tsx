@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Logo2 from '../../../public/png/Group 42.png';
+import Logo from '../../../public/png/Logo.png'
 import API from '../../api';
+import * as S from './style';
 
 const SignupPage = () => {
   const router = useRouter();
@@ -12,7 +13,7 @@ const SignupPage = () => {
 
   const handleSignup = async () => {
     try {
-      const response:any = await API.post('/auth/signup', {
+      const response: any = await API.post('/auth/signup', {
         username,
         password,
         nickname,
@@ -32,58 +33,43 @@ const SignupPage = () => {
   };
 
   return (
-    <>
-      <div style={{
-        position: "absolute",
-        width: "50%",
-        height: "100%",
-        backgroundColor: "#4C3327"
-      }}>
-        <Image src={Logo2} alt='Logo' priority={true} style={{ position: "absolute", width: "500px", height: "300px", left: "140px", top: "180px" }} />
-      </div>
-      <div style={{ position: "absolute", width: "50%", height: "100%", backgroundColor: "#F2EFE4", left: "756px" }}>
-        <div style={{ position: "absolute", fontSize: "33px", left: "350px", top: "30px" }}>회원가입</div>
-        <div>
-          <div style={{ position: "absolute", fontSize: "33px", left: "80px", top: "120px" }}>아이디</div>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{
-              position: "absolute", borderRadius: "15px", width: "600px", height: "50px", left: "80px", top: "200px"
-            }} />
-        </div>
-        <div>
-          <div style={{ position: "absolute", fontSize: "33px", left: "80px", top: "280px" }}>비밀번호</div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              position: "absolute", borderRadius: "15px", width: "600px", height: "50px", left: "80px", top: "360px"
-            }} />
-        </div>
-        <div>
-          <div style={{ position: "absolute", fontSize: "33px", left: "80px", top: "440px" }}>닉네임</div>
-          <input
-            type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            style={{
-              position: "absolute", borderRadius: "15px", width: "600px", height: "50px", left: "80px", top: "520px"
-            }} />
-        </div>
-        <div>
-          <button
-            onClick={handleSignup}
-            style={{
-              position: "absolute", width: "600px", height: "78px", backgroundColor: "#D9D9D9", borderRadius: "15px", top: "650px", left: "80px", fontFamily:"HANAMDAUM", fontSize:"35px"
-            }}>
-            회원가입
-          </button>
-        </div>
-      </div>
-    </>
+    <S.Container>
+      <S.LogoContainer>
+        <S.LogoImage>
+          <Image src={Logo} alt='Logo' priority={true} />
+        </S.LogoImage>
+      </S.LogoContainer>
+      <S.SignupContainer>
+        <S.Title>회원가입</S.Title>
+        <S.SignupBottom>
+          <div>
+            <S.Label>아이디</S.Label>
+            <S.Input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <S.Label>비밀번호</S.Label>
+            <S.Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <S.Label>닉네임</S.Label>
+            <S.Input
+              type="text"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </div>
+          <S.Button onClick={handleSignup}>회원가입</S.Button>
+        </S.SignupBottom>
+      </S.SignupContainer>
+    </S.Container >
   );
 };
 
