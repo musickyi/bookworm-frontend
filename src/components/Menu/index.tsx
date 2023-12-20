@@ -52,7 +52,7 @@ export default function Menu() {
         B: '/b',
         C: '/c',
     };
-    
+
     return (
         <>
             <S.MenuContainer>
@@ -81,7 +81,6 @@ export default function Menu() {
                                 <SVG.Arrow />
                                 {button.id === 1 ? '내가 작성한 책 확인' : '책장 확인'}
                             </S.ToggleButton>
-
                             {button.id === 2 && button.$isOpen && (
                                 <>
                                     {bookCaseButtons.map((bookCaseButton) => (
