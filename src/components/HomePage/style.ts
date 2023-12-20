@@ -15,7 +15,6 @@ width: 100%;
 
 export const BookcaseLocate = styled.div`
 width: 100%;
-@media screen and (min-width: 1500px){
   max-width: 108rem;
   padding: 1.3rem;
   font-size: 2.2rem;
@@ -23,12 +22,14 @@ width: 100%;
   span{
     padding-left:3rem;
   }
-}
   @media screen and (min-width: 1700px){
     width: 108rem;
     padding: 1rem;
     font-size: 2.7rem;
     justify-content: flex-start;
+    span{
+        padding-left:0rem;
+      }
   }
 `;
 
@@ -48,9 +49,8 @@ justify-content: space-evenly;
 width: 90%; 
 max-width: 108rem;
 z-index: 1;
-@media screen and (min-width: 1500px){
-  top: 9.8rem;
-}
+top: 9.8rem;
+
   @media screen and (min-width: 1700px){
     top:12.1rem;
   }
@@ -66,9 +66,8 @@ img {
     height: auto;
     z-index: -1; 
 }
-@media screen and (min-width: 1500px){
-  max-width: 82rem;
-}
+max-width: 82rem;
+
   @media screen and (min-width: 1700px){
     max-width:94rem;
   }
@@ -89,11 +88,8 @@ writing-mode: vertical-lr;
     cursor: pointer;
     background-color: lightgray;
 }
-@media screen and (min-width: 1500px){
   width: 3.3rem;
   height: 8rem;
-
-}
   @media screen and (min-width: 1700px){
     width: 3.8rem;
     height: 9rem;
@@ -103,9 +99,7 @@ writing-mode: vertical-lr;
 export const BookRow = styled.div`
   display: flex;
   flex-direction: row;
-  @media screen and (min-width: 1500px){
-    margin-bottom: 2.9rem;
-  }
+  margin-bottom: 2.9rem;
   @media screen and (min-width: 1700px){
     margin-bottom: 3.5rem;
   }
