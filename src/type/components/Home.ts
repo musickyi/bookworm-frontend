@@ -10,8 +10,6 @@ interface SelectedBookType{
     author:string;
     title:string;
     text:string;
-    bookshelf:string;
-    report:number;
 }
 interface MyModalProps {
     isOpen: boolean;

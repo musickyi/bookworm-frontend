@@ -129,6 +129,7 @@ export const BookModalStyle = styled.div`
     background-color:#FEFFEE;
     border:none;
     width:100%;
+    height:100%;
     max-height: 100vh;
     align-items:space-between;
     justify-content:space-between;
@@ -210,7 +211,7 @@ export const ReportModalStyle = styled.div`
     
     p{
         position:reltive;
-        height:0.2rem;
+        height:0.4rem;
         font-size:1rem;
         text-align:center;
         padding:1rem;
@@ -218,7 +219,14 @@ export const ReportModalStyle = styled.div`
     li{
         position:reltive;
         padding:0.7rem;
-        font-size:2rem;
+        font-size:1.5rem;
+    }
+    @media screen and (min-width: 1700px){
+        li{
+            position:reltive;
+            padding:0.7rem;
+            font-size:2rem;
+        }
     }
    
 `
@@ -231,17 +239,24 @@ export const ReportWarning = styled.div`
     text-align:center;
     h2{
         position:relative;
+        margin:0rem;
         display:flex;
         padding-top:1.5rem;
         font-size:3rem;
         font-family:none;
     }
+    p{
+        display:flex;
+        align-items:center;
+        maring:0rem;
+    }
 `
 export const ReportButtonStyle = styled.button`
+    position:relative;
     padding: 1rem;
     width:10rem;
     height:3rem;
-    margin: 2rem;
+    margin:1rem;
     border: none;
     cursor: pointer;
     font-weight: bold;

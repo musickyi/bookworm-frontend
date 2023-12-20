@@ -21,7 +21,7 @@ export const LogoImage = styled.div`
 
     img {
       width: 35rem;
-      height: 25rem;
+      height: auto;
     }
   @media screen and (min-width: 1700px){
     img {
@@ -59,11 +59,13 @@ export const Label = styled.div`
 `;
 
 export const Input = styled.input`
-  border-radius: 15px;
+      position:relative;
+      border-radius: 15px;
       padding: 1rem;
       width: 40rem;
       height: 2rem;
       margin-bottom: 1rem;
+      font-size:2rem;
   @media screen and (min-width: 1700px){
     padding: 1rem;
     width: 45rem;
@@ -81,7 +83,6 @@ export const Button = styled.button`
 
   span {
     font-size: 2rem;
-    text-decoration: none;
     color: white;
     font-family: "HANAMDAUM";
   }

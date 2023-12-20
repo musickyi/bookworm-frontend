@@ -25,7 +25,14 @@ export default function HomePage() {
   
     const fetchBooks = async () => {
       try {
-        const response = await API.get(`/book/bookshelf/${bookId}`);
+        const accessToken: string | null = localStorage.getItem('accessToken');
+        const headers = {
+          Authorization: `Bearer ${accessToken}`,
+        };
+
+        const response = await API.get(`/book/bookshelf/${bookId}`,{
+            headers,
+        });
         const booksData = response.data;
         dispatch(setBooks(booksData));
       } catch (error) {
@@ -92,7 +99,13 @@ export default function HomePage() {
   
     const handleBookClick = async (book:Book) => {
       try {
-        const response = await API.get(`/book/${book.id}`);
+        const accessToken: string | null = localStorage.getItem('accessToken');
+        const headers = {
+          Authorization: `Bearer ${accessToken}`,
+        };
+        const response = await API.get(`/book/${book.id}`,{
+            headers,
+        });
         setSelectedBook(response.data);
         setIsModalOpen(true);
       } catch (error) {
@@ -105,15 +118,27 @@ export default function HomePage() {
     };
   
     const handleReportClick = async () => {
-      try {
-        await API.post(`/report/${selectedBook?.id}`);
-        alert('신고가 성공적으로 접수되었습니다.');
-      } catch (error) {
-        alert('신고 접수 중 오류가 발생했습니다.');
-      }
-    };
-  
-    return (
+        try {
+            const accessToken: string | null = localStorage.getItem('accessToken');
+            const headers = {
+              Authorization: `Bearer ${accessToken}`,
+            };
+            const response = await API.patch(`/book/report/${selectedBook?.id}`,{
+                headers,
+            });
+            if (response.status === 200) {
+              alert('신고가 성공적으로 접수되었습니다.');
+              setIsModalOpen(false);
+              setIsReportModalOpen(false);
+            } else {
+              alert('신고 처리 중 오류가 발생했습니다.');
+            }
+          } catch (error) {
+            console.error('신고 처리 중 오류:', error);
+            alert('신고 처리 중 오류가 발생했습니다.');
+          }
+      };
+    return ( 
         <S.HomeContainer>
             <S.BookcaseLocate>
                 <span>{hyphenateBookId(bookId)} 책장</span>
@@ -125,7 +150,7 @@ export default function HomePage() {
                 </S.ImageContainer>
             </S.BookcaseStyle>
             <S.BookWriteButton>
-                <Link href='book/insert'>책 쓰기</Link>
+                <Link href='/write'>책 쓰기</Link>
             </S.BookWriteButton>
             <Modal
                 isOpen={isModalOpen}

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Logo from '../../../public/png/Logo.png'
 import Link from 'next/link';
 import API from '../../api';
+import { TokenType } from '../../type/TokenType';
+
 
 
 const LoginPage = () => {
@@ -15,18 +17,18 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       const response = await API.post('/auth/login', {
-        username,
-        password,
+        "memberId":username,
+        "password":password
       });
 
-      const { accessToken, refreshToken, expiredAT } = response.data;
+      const { accessToken, refreshToken, accessExpiredAt,refreshExpiredAt }:TokenType = response.data;
 
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      localStorage.setItem('expiredAT', expiredAT);
+      localStorage.setItem('accessExpiredAt', accessExpiredAt);
+      localStorage.setItem('refreshExpiredAt', refreshExpiredAt);
 
-      console.log('로그인 성공!');
-      router.push('/dashboard');
+      router.push('/a1');
     } catch (error) {
       console.error('로그인 실패. 아이디와 비밀번호를 확인하세요.');
     }
@@ -61,12 +63,10 @@ const LoginPage = () => {
         </S.InputForm>
         <S.LoginBottom>
           <S.Button onClick={handleLogin}>
-            <Link href={''}>
               <span>로그인</span>
-            </Link>
           </S.Button>
           <S.JoinLink>
-            <Link href='/user/join'>  회원가입 하러가기 {'>'}</Link>
+            <Link href='/signup'>회원가입 하러가기 {'>'}</Link>
           </S.JoinLink>
         </S.LoginBottom>
       </S.LoginContainer>

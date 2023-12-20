@@ -13,25 +13,29 @@ const SignupPage = () => {
 
   const handleSignup = async () => {
     try {
-      const response: any = await API.post('/auth/signup', {
-        username,
-        password,
-        nickname,
-      });
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-      if (response.ok) {
-        // 회원가입이 성공하면 로그인 페이지로 이동
+      if (!passwordRegex.test(password)) {
+        alert('비밀번호는 영어,숫자포함 8자리 이상이여야 합니다. ');
+        return;
+      }
+      const response: any = await API.post('/auth/signup', {
+        id:username,
+        password:password,
+        nickname:nickname,
+      });
+      if (response.data.ok) {
         router.push('/login');
       } else {
-        // 회원가입 실패 시에 대한 처리 (예: 에러 메시지 출력)
         console.error('Signup failed:', response.error);
       }
     } catch (error) {
-      // 네트워크 오류 또는 다른 예외 상황에 대한 처리
       console.error('Error during signup:', error);
     }
   };
-
+  const isFormValid = () => {
+    return username !== '' && password !== '' && nickname !== '';
+  };
   return (
     <S.Container>
       <S.LogoContainer>
@@ -66,7 +70,10 @@ const SignupPage = () => {
               onChange={(e) => setNickname(e.target.value)}
             />
           </div>
-          <S.Button onClick={handleSignup}>회원가입</S.Button>
+
+          <S.Button onClick={handleSignup} disabled={!isFormValid()}>
+            회원가입
+          </S.Button>
         </S.SignupBottom>
       </S.SignupContainer>
     </S.Container >

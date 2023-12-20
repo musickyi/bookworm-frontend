@@ -68,7 +68,7 @@ export const Input = styled.input`
   width: 40rem;
   height: 2rem;
   margin-bottom: 1rem;
-
+  font-size:2rem;
   @media screen and (min-width: 1700px) {
     width: 45rem;
     height: 2rem;
@@ -77,7 +77,8 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  background-color: #D9D9D9;
+  background-color: ${(props) => (props.disabled ? '#D9D9D9' : '#4C3327')};
+  color: ${(props) => (props.disabled ?  'none' : '#ffffff')};
   border-radius: 15px;
   border: none;
   display: flex;
@@ -87,8 +88,11 @@ export const Button = styled.button`
   font-size: 3rem;
   width: 42rem;
   height: 5rem;
-  margin-top:2rem;
-
+  margin-top: 2rem;
+  &:hover {
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    background-color: ${(props) => (props.disabled ? '#D9D9D9' : '#634124')};
+  }
   @media screen and (min-width: 1700px) {
     width: 45rem;
     height: 5rem;
@@ -97,6 +101,7 @@ export const Button = styled.button`
 
 export const SignupBottom = styled.div`
   padding-bottom: 11rem;
+ 
 `;
 
 export const InputForm = styled.div`
