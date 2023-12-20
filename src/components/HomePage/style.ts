@@ -1,86 +1,133 @@
 import styled from '@emotion/styled';
 
 export const HomeContainer = styled.div`
-    position:fixed;
-    top:5rem;
-    background-color: rgb(242, 239, 228);
-    z-index:-2;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-contents: center;
-    align-items: center;
-    flex-direction: column;
+position: fixed;
+z-index: -2;
+width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 2rem;
+  background-color: rgb(242, 239, 228);  
 `;
 
 export const BookcaseLocate = styled.div`
+width: 100%;
+@media screen and (min-width: 1500px){
+  max-width: 108rem;
+  padding: 1.3rem;
+  font-size: 2.2rem;
+  justify-content: flex-start;
+  span{
+    padding-left:3rem;
+  }
+}
+  @media screen and (min-width: 1700px){
     width: 108rem;
     padding: 1rem;
     font-size: 2.7rem;
-    justify-contents: flex-start;
+    justify-content: flex-start;
+  }
 `;
 
 export const BookcaseStyle = styled.div`
-    display: flex;
-    justify-contents: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BookLocate = styled.div`
-    position: absolute;
-    display: flex;
-    top:8.7rem;
-    flex-wrap: wrap;
-    padding-left: 18rem;
-    z-index: 1;
+position: absolute;
+display: flex;
+flex-wrap: wrap;
+left: 50%; 
+transform: translateX(-50%); 
+justify-content: space-evenly; 
+width: 90%; 
+max-width: 108rem;
+z-index: 1;
+@media screen and (min-width: 1500px){
+  top: 9.8rem;
+}
+  @media screen and (min-width: 1700px){
+    top:12.1rem;
+  }
 `;
 
 export const ImageContainer = styled.div`
+position: relative;
+width: 100%;
+img {
     position: relative;
-    img{
-        width:93.8rem;
-        height:auto;
-    }
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+    z-index: -1; 
+}
+@media screen and (min-width: 1500px){
+  max-width: 82rem;
+}
+  @media screen and (min-width: 1700px){
+    max-width:94rem;
+  }
 `;
 
 export const BookColoumn = styled.button`
+position: relative;
+padding: 0.5rem;
+display: flex;
+border: 2px solid #ffffff;
+z-index: 2; 
+color: #fff;
+align-items: flex-start;
+justify-content: flex-start;
+background-color: ${(props) => props.color};
+writing-mode: vertical-lr;
+&:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+@media screen and (min-width: 1500px){
+  width: 3.3rem;
+  height: 8rem;
+
+}
+  @media screen and (min-width: 1700px){
     width: 3.8rem;
     height: 9rem;
-    padding:0.5rem;
-    display:flex;
-    background-color: ${(props) => props.color};
-    border: 2px solid #ffffff;
-    color: #fff;
-    align-items: flex-start;
-    justify-content: flex-start;
-    writing-mode: vertical-lr;
-    &:hover{
-        cursor:pointer;
-        background-color: lightgray;
-    }
+  }
 `;
 
 export const BookRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 3.3rem;
+  display: flex;
+  flex-direction: row;
+  @media screen and (min-width: 1500px){
+    margin-bottom: 2.9rem;
+  }
+  @media screen and (min-width: 1700px){
+    margin-bottom: 3.5rem;
+  }
 `;
 
 export const BookWriteButton = styled.button`
-    position:absolute;
-    font-family: 'HANAMDAUM';
-    font-size:2rem;
-    border:none;
-    background-color:#FFFAD9;
-    bottom:8rem;
-    right:3rem;
-    width:10rem;
-    height:4rem;
-    a{
-        color:black;
-        text-decoration:none;
-    }
-`
+  position: absolute;
+  font-family: 'HANAMDAUM';
+  font-size: 2rem;
+  border: none;
+  background-color: #fffad9;
+  bottom: 8rem;
+  right: 3rem;
+  width: 10rem;
+  height: 4rem;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+`;
+
+
 export const BookModalStyle = styled.div`
     position:relaive;
     display:flex;
@@ -197,7 +244,7 @@ export const ReportWarning = styled.div`
     }
 `
 export const ReportButtonStyle = styled.button`
-    padding: 10px;
+    padding: 1rem;
     width:10rem;
     height:3rem;
     margin: 2rem;

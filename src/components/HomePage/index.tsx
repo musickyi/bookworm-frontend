@@ -76,7 +76,7 @@ export default function HomePage() {
           if (index < totalBooks && books[index].title) {
             bookRow.push(
               <S.BookColoumn key={column} color={getRandomColor()} onClick={() => handleBookClick(books[index])}>
-                {books[index].title} {index + 1}
+                {books[index].title}
               </S.BookColoumn>
             );
           }
@@ -90,7 +90,7 @@ export default function HomePage() {
       return generatedBooks;
     };
   
-    const handleBookClick = async (book: BooksType) => {
+    const handleBookClick = async (book:Book) => {
       try {
         const response = await API.get(`/book/${book.id}`);
         setSelectedBook(response.data);
@@ -212,5 +212,3 @@ export default function HomePage() {
         </S.HomeContainer>
     );
 }
-
-

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import * as SVG from '../../../public/svg';
 import Link from 'next/link';
+import API from '../../api';
 
 export default function Menu() {
-    const [isSidebarVisible, setSidebarVisibility] = useState(false);
+    const [myBooks, setMyBooks] = useState<MyList[]>([]);
+    const [isSidebarVisible, setSidebarVisibility] = useState<boolean>(false);
     const [toggleButtons, setToggleButtons] = useState<ToggleButtonProps[]>([
         { id: 1, $isOpen: false, selectedToggle: null },
         { id: 2, $isOpen: false, selectedToggle: null },
@@ -46,6 +48,15 @@ export default function Menu() {
                     : bookCaseButton
             ))
     };
+    useEffect(() => {
+        if (toggleButtons[0].$isOpen) {
+            API.get('/book/my')
+                .then((res) => setMyBooks(res.data))
+                .catch((error) => {
+                    setMyBooks([]);
+                });
+        }
+    }, [toggleButtons])
 
     const urlMappings: { [key: string]: string } = {
         A: '/a',
@@ -70,7 +81,6 @@ export default function Menu() {
 
             {isSidebarVisible && (
                 <S.Sidebar $isOpen={isSidebarVisible}>
-                    <S.BottomSpace />
                     {toggleButtons.map((button) => (
                         <div key={button.id}>
                             <S.ToggleButton
@@ -81,6 +91,18 @@ export default function Menu() {
                                 <SVG.Arrow />
                                 {button.id === 1 ? '내가 작성한 책 확인' : '책장 확인'}
                             </S.ToggleButton>
+                            {button.id === 1 && button.$isOpen && (
+                                <S.MyListStyle>
+                                    {myBooks.length > 0 ? (
+                                        myBooks.map((book) => (
+                                            <li key={book.id}>{book.title}</li>
+                                        ))
+                                    ) : (
+                                        <span>작성한 책이 없습니다.</span>
+                                    )}
+                                </S.MyListStyle>
+                            )}
+
                             {button.id === 2 && button.$isOpen && (
                                 <>
                                     {bookCaseButtons.map((bookCaseButton) => (

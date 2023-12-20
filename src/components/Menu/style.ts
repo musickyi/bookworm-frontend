@@ -8,6 +8,7 @@ export const MenuContainer = styled.div`
     top: 0px;
     display: flex;
     width: 100%;
+    z-index: 0;
 `;
 
 export const BookwormLogo = styled.div`
@@ -69,14 +70,15 @@ const fadeIn = keyframes`
 `;
 
 export const Sidebar = styled.div<SidebarProps>`
-    background-color: white;
-    height: 100vh;
-    width: 35rem;
     position: fixed;
-    top: 0;
+    background-color: white;
+    height: 93vh;
+    width: 35rem;
+    overflow-y:auto;
+    top: 5rem;
     right: ${({ $isOpen }) => ($isOpen ? '0' : '-35rem')};
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: -1;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     will-change: right;
@@ -138,7 +140,24 @@ export const BookCaseButton = styled.button<SidebarProps>`
   }
 `
 
-
+export const MyListStyle = styled.ul`
+font-size:2rem;
+animation: ${fadeIn} 0.3s ease-in-out;
+padding:1rem 0rem 1rem 4rem;
+li{
+  list-style:none;
+  padding:1rem;
+}
+li::marker {
+  content: '●'; 
+  font-size: 2rem; 
+  color:#906B6B;
+  margin: 0rem 0.5rem; 
+}
+span{
+  font-size:2rem;
+}
+`
 export const BookCaseLocateList = styled.ul`
   display:flex;
   flex-direction: column;
@@ -162,6 +181,3 @@ export const BookCaseLocateList = styled.ul`
 
   }
 `
-export const BottomSpace = styled.div`
-    height: 6rem; 
-`;

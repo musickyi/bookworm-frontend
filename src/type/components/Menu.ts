@@ -13,3 +13,8 @@ interface BookCaseButtonProps {
     $isOpen: boolean;
     label: string;
   }
+
+interface MyList{
+    id:number;
+    title:string;
+}
