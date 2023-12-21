@@ -119,6 +119,9 @@ export const BookWriteButton = styled.button`
     color: black;
     text-decoration: none;
   }
+  &:hover{
+    cursor:pointer;
+  }
 `;
 
 

@@ -86,9 +86,11 @@ export const Button = styled.button`
     color: white;
     font-family: "HANAMDAUM";
   }
-
     width: 40rem;
     height: 5rem;
+    &:hober{
+      cursor:pointer;
+    }
 @media screen and (min-width: 1700px){
   width: 45rem;
   height: 5rem;

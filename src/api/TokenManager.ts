@@ -33,7 +33,7 @@ class TokenManager {
   async getRefresh({ refresh, push = false }: getRefreshProps) {
     try {
       const { data } = await axios.patch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/refresh`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/reissue-token`,
         {},
         {
           headers: {

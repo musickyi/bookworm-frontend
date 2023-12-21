@@ -3,7 +3,6 @@ import Bookcase from '../../../public/png/bookcase.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as S from './style';
-import Link from 'next/link';
 import API from '../../api';
 import Modal from 'react-modal';
 import * as SVG from '../../../public/svg'
@@ -19,10 +18,19 @@ export default function HomePage() {
     const [selectedBook, setSelectedBook] = useState<SelectedBookType | undefined>();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isReportModalOpen, setIsReportModalOpen] = useState<boolean>(false);
-  
+    const [isWriteAllowed, setIsWriteAllowed] = useState<boolean>(true);
+
     const router = useRouter();
     const bookId: string | string[] | undefined = router.query.id;
+
+    useEffect(() => {
+        if (bookId) {
+          dispatch(setBooks([]));
+          fetchBooks();
+        }
   
+      }, [bookId, dispatch]);
+
     const fetchBooks = async () => {
       try {
         const accessToken: string | null = localStorage.getItem('accessToken');
@@ -33,19 +41,14 @@ export default function HomePage() {
         const response = await API.get(`/book/bookshelf/${bookId}`,{
             headers,
         });
-        const booksData = response.data;
+        const booksData:Book[] = response.data;
         dispatch(setBooks(booksData));
+        setIsWriteAllowed(booksData !== undefined && booksData.length < 80);
+       
       } catch (error) {
         console.log(`${error} 오류!`);
       }
     };
-  
-    useEffect(() => {
-      if (bookId) {
-        dispatch(setBooks([]));
-        fetchBooks();
-      }
-    }, [bookId, dispatch]);
   
     const openReportModal = () => {
       setIsReportModalOpen(true);
@@ -112,6 +115,9 @@ export default function HomePage() {
         console.log(`${error} 오류!`);
       }
     };
+    const handleWriteButtonClick = () => {
+        if (isWriteAllowed) router.push(`/write/${bookId}`);
+      };
   
     const closeModal = () => {
       setIsModalOpen(false);
@@ -149,8 +155,11 @@ export default function HomePage() {
                     <Image src={Bookcase} alt="Bookcase" priority={true} />
                 </S.ImageContainer>
             </S.BookcaseStyle>
-            <S.BookWriteButton>
-                <Link href='/write'>책 쓰기</Link>
+              <S.BookWriteButton
+              onClick={handleWriteButtonClick}
+              disabled={!isWriteAllowed}
+              >
+                {isWriteAllowed ? '집필하기' : '집필불가'}
             </S.BookWriteButton>
             <Modal
                 isOpen={isModalOpen}

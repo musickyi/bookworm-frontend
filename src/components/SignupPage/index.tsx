@@ -24,7 +24,7 @@ const SignupPage = () => {
         password:password,
         nickname:nickname,
       });
-      if (response.data.ok) {
+      if (response.status == 200) {
         router.push('/login');
       } else {
         console.error('Signup failed:', response.error);

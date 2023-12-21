@@ -10,6 +10,7 @@ API.interceptors.request.use(async (config) => {
   
     if (
       !tokenManager.checkToken(tokenManager.accsessExpiredAt) &&
+      !tokenManager.checkToken(tokenManager.refreshExpiredAt) &&
       !tokenManager.skipUrl()
     ) {
       await tokenManager.getRefresh({ refresh: tokenManager.refreshToken });

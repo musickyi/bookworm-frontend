@@ -20,14 +20,14 @@ export const LogoImage = styled.div`
   justify-content: center;
     img {
       width: 35rem;
-      height: 25rem;
+      height: auto;
     }
 
 
   @media screen and (min-width: 1700px) {
     img {
       width: 40rem;
-      height: 20rem;
+      height: auto;
     }
   }
 `;
