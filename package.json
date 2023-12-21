@@ -1,0 +1,34 @@
+{
+  "name": "bookworm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.1",
+    "@emotion/styled": "^11.11.0",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@types/node": "20.10.4",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.17",
+    "axios": "^1.6.2",
+    "eslint": "8.55.0",
+    "eslint-config-next": "14.0.4",
+    "next": "^14.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-modal": "^3.16.1",
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.0",
+    "redx": "^1.0.1",
+    "styled-components": "^6.1.1",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.16.3"
+  }
+}
