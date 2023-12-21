@@ -1,7 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 export const Logo = styled(Image)`
   position:relative;
@@ -71,39 +69,44 @@ export const BodyInput = styled.textarea`
 export const WarningSection = styled.div`
   z-index: 1;
   position: absolute;
-  top: 8.125rem;
-  left: 35.625rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
   border-radius: 0.3125rem;
   border-color: black;
   padding: 0.625rem;
   background-color: #FEFFE5;
   height: 21.875rem;
   width: 28.125rem;
+  top:10rem;
+  @media screen and (min-width: 1700px){
+    top:15rem;
+  }
 `;
 
 export const WarningTitle = styled.div`
-  font-size: 1.875rem;
-  left: 11.25rem;
   position: relative;
-  top: 1.25rem;
+  width:100%;
+  text-align:center;
+  justify-content:center;
+  align-items:center;
+  font-size: 1.875rem;
 `;
 
 export const WarningMessage = styled.p`
-  position: absolute;
+  position: relative;
   text-align: center;
-  left: 3.75rem;
-  top: 6.25rem;
 `;
 
-export const WarningButton = styled.button<{ confirm?: boolean }>`
+export const WarningButton = styled.button<{ $confirm?: boolean }>`
   position: relative;
-  background-color: ${(props) => (props.confirm ? '#A0FF88' : '#FF5959')};
+  background-color: ${(props) => (props.$confirm ? '#A0FF88' : '#FF5959')};
   width: 5.3125rem;
-  left: ${(props) => (props.confirm ? '80px' : '190px')};
   height: 2.1875rem;
-  top: 16.25rem;
   border-radius: 0.3125rem;
   border-color: #FEFFE5;
+  margin: 0rem 2rem;
   font-size: 0.9375rem;
   font-family: HANAMDAUM;
 `;

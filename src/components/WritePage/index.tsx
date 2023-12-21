@@ -5,11 +5,9 @@ import { useRouter } from 'next/router';
 import API from '../../api/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBooks } from '../../store/books';
-import { RootState } from '../../store/store';
 
 const WritePage = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state: RootState) => state.books.books);
   const [isWriting, setIsWriting] = useState(false);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -41,11 +39,8 @@ const WritePage = () => {
 
   const handleWriteClick = async () => {
     await fetchBooks();
-    if (isWriteAllowed) {
-      setIsWriting(!isWriting);
-    } else {
-      alert('이 책장에는 더 이상 책을 만들 수 없습니다.');
-    }
+    if (isWriteAllowed) setIsWriting(!isWriting);
+   
   };
 
   const handleCancelClick = () => {
@@ -53,7 +48,7 @@ const WritePage = () => {
   };
 
   const handleConfirmClick = () => {
-
+    if (title.length >= 1 && body.length >= 1) {
     const postData = {
       title: title,
       text: body,
@@ -64,7 +59,12 @@ const WritePage = () => {
       router.push(`/${bookId}`);
     }).catch(error => {
       alert("전송에 실패했습니다.");
-    });
+    })
+  } else {
+      alert('제목과 본문은 최소 1글자 이상이어야 합니다.');
+      setIsWriting(false);
+    }
+;
   };
   return (
     <S.ContentWrapper>
@@ -91,8 +91,10 @@ const WritePage = () => {
             <br /> <br />
             <span>그대로 진행 하시겠습니까?</span>
           </S.WarningMessage>
-          <S.WarningButton confirm={true} onClick={handleConfirmClick} >확인</S.WarningButton>
-          <S.WarningButton confirm={false} onClick={handleCancelClick}>취소</S.WarningButton>
+          <div>
+            <S.WarningButton $confirm={true} onClick={handleConfirmClick} >확인</S.WarningButton>
+            <S.WarningButton $confirm={false} onClick={handleCancelClick}>취소</S.WarningButton>
+          </div>
         </S.WarningSection>
       )}
       <div>
