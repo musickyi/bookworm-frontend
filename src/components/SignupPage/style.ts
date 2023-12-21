@@ -99,6 +99,17 @@ export const Button = styled.button`
   }
 `;
 
+export const JoinLink = styled.div`
+  display: flex;
+  justify-content: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 2rem;
+  }
+`;
+
 export const SignupBottom = styled.div`
   padding-bottom: 11rem;
  

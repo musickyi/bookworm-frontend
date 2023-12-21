@@ -37,7 +37,7 @@ class TokenManager {
         {},
         {
           headers: {
-            RefreshToken: `Bearer ${refresh}`,
+            RefreshToken: `${refresh}`,
           },
         }
       );
@@ -51,8 +51,7 @@ class TokenManager {
   }
 
   skipUrl() {
-    const skipUrl = ['/login', '/signUp'];
-
+    const skipUrl = ['/login', '/signup'];
     return skipUrl.includes(Router.route);
   }
 

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Logo from '../../../public/png/Logo.png'
-import API from '../../api';
+import { notTokenAPI} from '../../api';
 import * as S from './style';
+import Link from 'next/link';
 
 const SignupPage = () => {
   const router = useRouter();
@@ -19,18 +20,20 @@ const SignupPage = () => {
         alert('비밀번호는 영어,숫자포함 8자리 이상이여야 합니다. ');
         return;
       }
-      const response: any = await API.post('/auth/signup', {
+      const response: any = await notTokenAPI.post('/auth/signup', {
         id:username,
         password:password,
         nickname:nickname,
       });
-      if (response.status == 200) {
-        router.push('/login');
+      
+      if(response.status == 201) router.push('/login');
+      
+    } catch (error:any) {
+      if (error.response && error.response.status === 409) {
+        alert('아이디 또는 닉네임이 이미 사용 중입니다.');
       } else {
-        console.error('Signup failed:', response.error);
+        console.error('Error during signup:', error);
       }
-    } catch (error) {
-      console.error('Error during signup:', error);
     }
   };
   const isFormValid = () => {
@@ -74,6 +77,9 @@ const SignupPage = () => {
           <S.Button onClick={handleSignup} disabled={!isFormValid()}>
             회원가입
           </S.Button>
+          <S.JoinLink>
+            <Link href='/login'>로그인 하러가기 {'>'}</Link>
+          </S.JoinLink>
         </S.SignupBottom>
       </S.SignupContainer>
     </S.Container >

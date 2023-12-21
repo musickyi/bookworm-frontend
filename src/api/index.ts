@@ -5,6 +5,12 @@ const API = axios.create({
     baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
 })
 
+
+export const notTokenAPI = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+});
+
+
 API.interceptors.request.use(async (config) => {
     const tokenManager = new TokenManager();
   

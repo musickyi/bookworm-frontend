@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Logo from '../../../public/png/Logo.png'
 import Link from 'next/link';
-import API from '../../api';
+import { notTokenAPI } from '../../api';
 import { TokenType } from '../../type/TokenType';
 
 
@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await API.post('/auth/login', {
+      const response = await notTokenAPI.post('/auth/login', {
         "memberId":username,
         "password":password
       });
@@ -30,7 +30,7 @@ const LoginPage = () => {
 
       router.push('/a1');
     } catch (error) {
-      console.error('로그인 실패. 아이디와 비밀번호를 확인하세요.');
+      alert('아이디와 비밀번호가 일치하지 않습니다. 아이디와 비밀번호를 확인하세요.');
     }
   };
 
