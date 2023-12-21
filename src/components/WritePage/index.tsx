@@ -28,14 +28,8 @@ const WritePage = () => {
 
   const fetchBooks = async () => {
     try {
-      const accessToken: string | null = localStorage.getItem('accessToken');
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-      };
 
-      const response = await API.get(`/book/bookshelf/${bookId}`, {
-        headers,
-      });
+      const response = await API.get(`/book/bookshelf/${bookId}`);
       const booksData: Book[] = response.data;
       dispatch(setBooks(booksData));
       setIsWriteAllowed(booksData !== undefined && booksData.length < 80);
@@ -59,10 +53,6 @@ const WritePage = () => {
   };
 
   const handleConfirmClick = () => {
-    const accessToken: string | null = localStorage.getItem('accessToken');
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-    };
 
     const postData = {
       title: title,
@@ -70,9 +60,7 @@ const WritePage = () => {
       bookshelf: bookId,
     };
 
-    API.post('/book', postData, {
-      headers
-    }).then(() => {
+    API.post('/book', postData).then(() => {
       router.push(`/${bookId}`);
     }).catch(error => {
       alert("전송에 실패했습니다.");

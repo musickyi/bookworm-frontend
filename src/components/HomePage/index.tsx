@@ -33,18 +33,10 @@ export default function HomePage() {
 
     const fetchBooks = async () => {
       try {
-        const accessToken: string | null = localStorage.getItem('accessToken');
-        const headers = {
-          Authorization: `Bearer ${accessToken}`,
-        };
-
-        const response = await API.get(`/book/bookshelf/${bookId}`,{
-            headers,
-        });
+        const response = await API.get(`/book/bookshelf/${bookId}`);
         const booksData:Book[] = response.data;
         dispatch(setBooks(booksData));
         setIsWriteAllowed(booksData !== undefined && booksData.length < 80);
-       
       } catch (error) {
         console.log(`${error} 오류!`);
       }
@@ -102,13 +94,7 @@ export default function HomePage() {
   
     const handleBookClick = async (book:Book) => {
       try {
-        const accessToken: string | null = localStorage.getItem('accessToken');
-        const headers = {
-          Authorization: `Bearer ${accessToken}`,
-        };
-        const response = await API.get(`/book/${book.id}`,{
-            headers,
-        });
+        const response = await API.get(`/book/${book.id}`);
         setSelectedBook(response.data);
         setIsModalOpen(true);
       } catch (error) {
@@ -125,13 +111,7 @@ export default function HomePage() {
   
     const handleReportClick = async () => {
         try {
-            const accessToken: string | null = localStorage.getItem('accessToken');
-            const headers = {
-              Authorization: `Bearer ${accessToken}`,
-            };
-            const response = await API.patch(`/book/report/${selectedBook?.id}`,{
-                headers,
-            });
+            const response = await API.patch(`/book/report/${selectedBook?.id}`);
             if (response.status === 200) {
               alert('신고가 성공적으로 접수되었습니다.');
               setIsModalOpen(false);
